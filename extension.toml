@@ -4,3 +4,4 @@ version = "0.1.0"
 schema_version = 1
 authors = ["Serhii Pryimachuk"]
 description = "Things Light and Dark, adapted from Colin Eckert's Obsidian Things theme."
+repository = "https://github.com/sergpryimachuk/things-zed"

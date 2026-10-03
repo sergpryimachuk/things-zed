@@ -6,13 +6,36 @@ Things Light and Things Dark bring the colors of [Colin Eckert's Obsidian Things
 
 ## Install
 
-Run from this repository:
+Follow Zed's [local theme installation](https://zed.dev/docs/themes#local-themes). Save your previous theme setting and any existing `~/.config/zed/themes/things.json` before replacing them. Clone the repository and copy the theme JSON into your Zed configuration directory:
+
+```sh
+git clone https://github.com/sergpryimachuk/things-zed.git
+cd things-zed
+mkdir -p ~/.config/zed/themes
+cp themes/things.json ~/.config/zed/themes/things.json
+```
+
+Open Zed's user settings and set the top-level `theme` value to follow the system appearance:
+
+```json
+"theme": {
+  "mode": "system",
+  "light": "Things Light",
+  "dark": "Things Dark"
+}
+```
+
+You can also choose Things Light or Things Dark from Zed's theme selector. Restart Zed if the theme list or current window does not update. The manual method does not create backups.
+
+### Optional convenience installer
+
+This repository provides a Python convenience installer for automatic backups and settings updates. It is not provided by Zed. Run from the cloned repository:
 
 ```sh
 python3 scripts/install.py
 ```
 
-The installer copies `themes/things.json` into `~/.config/zed/themes` and changes only the top-level `theme` setting. It preserves comments, trailing commas, unrelated preferences, font sizes, and panel positions. Zed follows the system appearance with Things Light and Things Dark. Restart Zed if its theme list or current window does not update.
+The installer copies `themes/things.json` into `~/.config/zed/themes` and changes only the top-level `theme` setting. It preserves comments, trailing commas, unrelated preferences, font sizes, and panel positions. Zed follows the system appearance with Things Light and Things Dark.
 
 For a custom configuration directory:
 
@@ -20,11 +43,11 @@ For a custom configuration directory:
 python3 scripts/install.py --config-dir /path/to/zed
 ```
 
-Zed also supports installing this repository as a dev extension through its Extensions panel. The manifest is local extension metadata, with no publishing or remote repository configured.
+For theme development, Zed's Extensions panel can load this repository as a dev extension. This theme has not been published to Zed's extension store.
 
 ## Restore your previous appearance
 
-Each install prints a backup directory under `~/.config/zed/things-backups/`. It contains the previous settings, any previous `things.json`, and a manifest recording which files existed.
+Each run of the optional installer prints a backup directory under `~/.config/zed/things-backups/`. It contains the previous settings, any previous `things.json`, and a manifest recording which files existed.
 
 Copy the saved `settings.json` back to `~/.config/zed/settings.json`. If `theme_existed` in the manifest is true, restore the saved `things.json` to `~/.config/zed/themes/things.json`. Otherwise, remove the installed `things.json`. A full settings restore also reverts later preference edits. To retain those edits, restore only the previous `theme` value from the saved settings.
 
